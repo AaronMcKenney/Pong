@@ -1,7 +1,7 @@
 Pong
 ====
 
-Version 1.0
+Version 1.01
 
 A simple game of Pong implemented in C++ on a Linux machine.
 The following libraries must be installed in order to play:

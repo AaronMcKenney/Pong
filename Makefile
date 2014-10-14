@@ -12,7 +12,11 @@ OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 EXE = pong
 
-all: $(EXE)
+all: mk_obj_dir $(EXE)
+
+#Make OBJ_DIR if it doesn't already exist
+mk_obj_dir:
+	mkdir -p $(OBJ_DIR)
 
 $(EXE): $(OBJ)
 	$(CC) $(OBJ) -o $@ $(LDFLAGS)
@@ -25,4 +29,4 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 $(OBJ): $(INC)
 
 clean:
-	rm -f $(OBJ) $(EXE)
+	rm -rf $(OBJ_DIR) $(EXE)
