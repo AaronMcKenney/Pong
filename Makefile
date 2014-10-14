@@ -1,20 +1,28 @@
 CC=g++
-CFLAGS=-Wall
+CFLAGS=-c -Wall
 LDFLAGS=-lSDL -lSDL_ttf
 
-CPP=board.cpp timer.cpp paddle.cpp ball.cpp
-INCFLAG=-Iinclude
-OBJ=$(patsubst %.cpp, objects/%.o, $(CPP))
-SRC=$(patsubst %.cpp, src/%.cpp, $(CPP))
+INC_DIR = ./include
+SRC_DIR = ./src
+OBJ_DIR = ./objects
 
-default: pong
+INC = $(wildcard $(INC_DIR)/*.h)
+SRC = $(wildcard $(SRC_DIR)/*.cpp)
+OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
-pong: $(OBJ) $(SRC) src/pong.cpp
-	$(CC) $(CFLAGS) $(INCFLAG) $(OBJ) src/pong.cpp -o $@ $(LDFLAGS)
+EXE = pong
 
-objects/%.o: src/%.cpp include/%.h
-	$(CC) $(CFLAGS) $(INCFLAG) -c $< -o $@ $(LDFLAGS)
+all: $(EXE)
+
+$(EXE): $(OBJ)
+	$(CC) $(OBJ) -o $@ $(LDFLAGS)
+
+#Every source file has a corresponding object file
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CC) $(CFLAGS) $< -o $@
+
+#Rebuild objects if any include files change	
+$(OBJ): $(INC)
 
 clean:
-	rm objects/*.o
-	rm pong
+	rm -f $(OBJ) $(EXE)

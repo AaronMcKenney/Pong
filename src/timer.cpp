@@ -1,7 +1,10 @@
 //This piece of code was originally from Lazy Foo' Productions
 //[http://lazyfoo.net/]
 
+//SDL headers
 #include "SDL/SDL.h"
+
+//Pong headers
 #include "../include/timer.h"
 
 Timer::Timer()

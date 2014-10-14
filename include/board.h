@@ -32,22 +32,15 @@
 #define BOT_PANEL_HEIGHT 80
 #define TOP_PANEL_LINE_HEIGHT 5
 #define BOT_PANEL_LINE_HEIGHT TOP_PANEL_LINE_HEIGHT
-//Panel Identification Numbers
-#define TOP 3
-#define BOT 4
-
-//Font File and Size
-#define FONT_FILE "src/lgs.ttf"
-#define FONT_SIZE 60
 
 //Used to determine the location of the scores
 #define SCORE_MSG_X_OFFSET SCREEN_WIDTH/2 - 80
 #define SCORE_MSG_Y_OFFSET 20
 
-//Used to determine the outline of a message box
-#define OUTLINE_SIZE 3
-#define OUTLINE_X_SPACE 12
-#define OUTLINE_Y_SPACE 0
+//Font File and Size
+#define FONT_FILE "src/lgs.ttf"
+#define BIG_FONT_SIZE 60
+#define SMALL_FONT_SIZE 30
 
 
 /*~~EXTERNS~~*/
@@ -55,11 +48,8 @@ extern SDL_Surface *screen;
 
 
 /*~~FUNCTIONS~~*/
-//Checks if the two given objects have collided with each other.
-//Returns true if they have and false if they haven't.
-bool checkCollision(SDL_Rect A, SDL_Rect B);
-
 //Applies source to dest with an offset of (x,y)
+//Function exists here because all graphical components use it.
 void applySurface(int x, int y, SDL_Surface *src, SDL_Surface *dest);
 
 

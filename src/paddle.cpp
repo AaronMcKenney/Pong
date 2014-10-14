@@ -1,24 +1,24 @@
+//SDL headers
 #include "SDL/SDL.h"
+
+//Pong headers
 #include "../include/board.h"
 #include "../include/paddle.h"
 
 Paddle::Paddle(int player)
 {
+    //set the paddle's info based on which player controls it
     if(player == P1)
     {
-        owner = P1;
-
-        up = (int)SDLK_w;
-        down = (int)SDLK_s;
+        up = P1_UP;
+        down = P1_DOWN;
 
         box.x = PADDLE_DIST_FROM_EDGE;
     }
     else
     {
-        owner = P2;
-
-        up = (int)SDLK_UP;
-        down = (int)SDLK_DOWN;
+        up = P2_UP;
+        down = P2_DOWN;
 
         box.x = SCREEN_WIDTH - (PADDLE_WIDTH + PADDLE_DIST_FROM_EDGE);
     }

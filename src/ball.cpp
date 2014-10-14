@@ -1,8 +1,11 @@
+//C++ headers
 #include <math.h>
-
 #include <time.h>
 
+//SDL headers
 #include "SDL/SDL.h"
+
+//Pong headers
 #include "../include/board.h"
 #include "../include/ball.h"
 
@@ -30,14 +33,14 @@ Ball::Ball(int num_scores)
     //ball goes faster for every point scored
     vel = BALL_INIT_VEL + num_scores*BALL_VEL_INC_PER_POINT;
     angle = rand()%360;
-    if(angle > 80.0 && angle <= 90.0)
-        angle = 80.0;
-    else if(angle > 90.0 && angle < 110.0)
-        angle = 110.0;
-    else if(angle > 260.0 && angle <= 270.0)
-        angle = 260.0;
-    else if(angle > 270.0 && angle <= 280.0)
-        angle = 280.0;
+    if(angle > 60.0 && angle <= 90.0)
+        angle = 60.0;
+    else if(angle > 90.0 && angle < 130.0)
+        angle = 130.0;
+    else if(angle > 240.0 && angle <= 270.0)
+        angle = 240.0;
+    else if(angle > 270.0 && angle <= 300.0)
+        angle = 300.0;
 
     //Assume velocity [vel, 0], and rotate vector by angle
     xVel = (float)vel*cos(angle * PI/180.0);
@@ -65,10 +68,13 @@ void Ball::increaseSpeed()
     float xUnitScaled = (xVel/magn) * BALL_VEL_INC_PER_HIT;
     float yUnitScaled = (yVel/magn) * BALL_VEL_INC_PER_HIT;
 
+    //Increase the speed of the ball in the direction it's going
     xVel += xUnitScaled;
     yVel += yUnitScaled;
 }
 
+//This piece of code was originally from Lazy Foo' Productions
+//[http://lazyfoo.net/]
 bool checkCollision(SDL_Rect A, SDL_Rect B)
 {
     //The first four conditions depict cases where its impossible
